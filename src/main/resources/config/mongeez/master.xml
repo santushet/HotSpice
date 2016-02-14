@@ -1,0 +1,7 @@
+<changeFiles>
+    <file path="authorities.xml"/>
+    <file path="users.xml"/>
+    <file path="category.xml"/>
+      <file path="dish.xml"/>
+    <file path="social_user_connections.xml"/>
+</changeFiles>

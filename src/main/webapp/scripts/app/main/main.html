@@ -1,0 +1,38 @@
+<div ng-cloak="">
+
+    <div class="container">
+        <div ng-include="'scripts/components/sidebar/sidebar.html'"></div>
+
+        <div class="dishbox" ng-if="dishs.length==0">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h3>No dishes found.</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-sm-6 col-md-4" ng-repeat="dish in dishs track by dish.id">
+                    <div class="thumbnail" ng-cloak="">
+
+                        <img ng-src="{{dish.imageUrl}}" alt="{{dish.name}}">
+                        <div class="caption">
+                            <div class="text text-center">
+                                <h3>{{dish.name}}</h3>
+                                <h4>
+                                    <p>{{dish.price | currency:'&#8377;' }}</p>
+                                </h4>
+                                <p>
+                                    <a ui-sref="viewDish({id:dish.id})" class="btn btn-info" role="button">View</a>
+                                    <ngcart-addtocart id="{{dish.id}}" quantity="1" quantity-max="9" name="{{dish.name}}" price="{{dish.price}}" template-url="scripts/components/ngCart/addtocart.html" data="dish">Buy</ngcart-addtocart>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

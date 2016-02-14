@@ -1,0 +1,109 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-4" author="hotspice">
+        <script>
+
+            db.dish.insert({
+                "_id": ObjectId("56babae7e2dcf5d0ebda3682"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Broccolli vada",
+                "price": 100,
+                "stock": 50,
+                "description": "This is special vada made of spinach . Tasty and healthy!",
+                "imageUrl": "/assets/images/broccoli_floretes.jpg",
+                "category": {
+                    "_id": ObjectId("56ba9ecde2dc593c8566b7e0"),
+                    "name": "classic",
+                    "slug": "classic",
+                    "info": "This is classic category. Made for epicureans.",
+                    "category": 1,
+                    "active": true
+                }
+            });
+            db.dish.insert({
+                "_id": ObjectId("56babbdce2dcf5d0ebda3682"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Veg burger",
+                "price": 100,
+                "stock": 100,
+                "description": "This is veg burger. Be cautious before eating because of high saturated fat",
+                "imageUrl": "/assets/images/images.jpg",
+                "category": {
+                    "_id": ObjectId("56ba9ecde2dc593c8566b7e0"),
+                    "name": "classic",
+                    "slug": "classic",
+                    "info": "This is classic category. Made for epicureans.",
+                    "category": 1,
+                    "active": true
+                }
+            });
+            db.dish.insert({
+                "_id": ObjectId("56babc1ce2dcf5d0ebda3683"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Tuna special fry",
+                "price": 250,
+                "stock": 100,
+                "description": "This is made with olive oil.",
+                "imageUrl": "/assets/images/salmon_in_pan.jpg",
+                "category": {
+                    "_id": ObjectId("56baba0de2dcf5d0ebda3680"),
+                    "name": "chef's special",
+                    "slug": "chefs-special",
+                    "info": "This list includes chef's special list  prepared meticulously",
+                    "category": 3,
+                    "active": true
+                }
+            });
+            db.dish.insert({
+                "_id": ObjectId("56babccee2dcf5d0ebda3684"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Special fish fry",
+                "price": 100,
+                "stock": 50,
+                "description": "This is special fry",
+                "imageUrl": "/assets/images/raw_salmon_fillets.jpg",
+                "category": {
+                    "_id": ObjectId("56baba0de2dcf5d0ebda3680"),
+                    "name": "chef's special",
+                    "slug": "chefs-special",
+                    "info": "This list includes chef's special list  prepared meticulously",
+                    "category": 3,
+                    "active": true
+                }
+            });
+            db.dish.insert({
+                "_id": ObjectId("56babd39e2dcf5d0ebda3685"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Becon buffet",
+                "price": 1000,
+                "stock": 12,
+                "description": "This is special all time favorite dish.",
+                "imageUrl": "/assets/images/tuna_salad_plate.jpg",
+                "category": {
+                    "_id": ObjectId("56ba9f15e2dc593c8566b7e1"),
+                    "name": "all time fav",
+                    "slug": "all-time-fav",
+                    "info": "This is all time fav dishes. Decided based upon ratings.",
+                    "category": 2,
+                    "active": true
+                }
+            });
+            db.dish.insert({
+                "_id": ObjectId("56babda9e2dcf5d0ebda3687"),
+                "_class": "com.spice.hot.domain.Dish",
+                "name": "Veg corn dish",
+                "price": 100,
+                "stock": 11,
+                "description": "This is also famous dish",
+                "imageUrl": "/assets/images/images (1).png",
+                "category": {
+                    "_id": ObjectId("56ba9f15e2dc593c8566b7e1"),
+                    "name": "all time fav",
+                    "slug": "all-time-fav",
+                    "info": "This is all time fav dishes. Decided based upon ratings.",
+                    "category": 2,
+                    "active": true
+                }
+            });
+        </script>
+    </changeSet>
+</mongoChangeLog>

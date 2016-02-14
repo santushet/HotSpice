@@ -1,0 +1,10 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-1" author="hotspice">
+        <script>
+            db.authority.insert({"_id" : "ROLE_ADMIN"});
+            db.authority.insert({"_id" : "ROLE_USER"});
+            db.authority.insert({"_id" : "ROLE_CHEF"});
+            db.authority.insert({"_id" : "ROLE_OPERATOR"});
+        </script>
+    </changeSet>
+</mongoChangeLog>

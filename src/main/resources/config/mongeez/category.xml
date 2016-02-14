@@ -1,0 +1,33 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-3" author="hotspice">
+        <script>
+            db.category.insert({
+                "_id": ObjectId("56ba9ecde2dc593c8566b7e0"),
+                "_class": "com.spice.hot.domain.Category",
+                "name": "classic",
+                "slug": "classic",
+                "info": "This is classic category. Made for epicureans.",
+                "category": 1,
+                "active": true
+            });
+            db.category.insert({
+                "_id": ObjectId("56ba9f15e2dc593c8566b7e1"),
+                "_class": "com.spice.hot.domain.Category",
+                "name": "all time fav",
+                "slug": "all-time-fav",
+                "info": "This is all time fav dishes. Decided based upon ratings.",
+                "category": 2,
+                "active": true
+            });
+            db.category.insert({
+                "_id": ObjectId("56baba0de2dcf5d0ebda3683"),
+                "_class": "com.spice.hot.domain.Category",
+                "name": "chef's special",
+                "slug": "chefs-special",
+                "info": "This list includes chef's special list  prepared meticulously",
+                "category": 3,
+                "active": true
+            });
+        </script>
+    </changeSet>
+</mongoChangeLog>

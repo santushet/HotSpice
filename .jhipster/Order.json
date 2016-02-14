@@ -1,0 +1,66 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "shippingAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "shipping",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "tax",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "discount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "subTotal",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "orderDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "state",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "total",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "no"
+}

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <!-- <h1>Cart</h1> -->
+        <ngcart-cart template-url="scripts/components/ngCart/cart.html"></ngcart-cart>
+    </div>
+
+    <div class="col-md-7" id="checkout">
+        <div class="box">
+            <form name="checkout_form" class="form-horizontal" role="form" novalidate ng-show="count > 0">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Enter delivery details</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">
+                            Name
+                        </label>
+                        <div class="col-sm-7">
+                            <span class="block input-icon input-icon-right">
+                                <input type="text" ng-model="customer.name" name="name" class="form-control" required placeholder="Your name here" tabindex="2"/>
+                                <small class="errorMessage" ng-show="checkout_form.name.$dirty && checkout_form.name.$invalid">
+                                    Your name required.</small>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">
+                            Address
+                        </label>
+                        <div class="col-sm-7">
+                            <span class="block input-icon input-icon-right">
+                                <textarea name="address" ng-model="customer.address" class="form-control" required placeholder="Address" tabindex="4"></textarea>
+                                <small class="errorMessage" ng-show="checkout_form.address.$dirty && checkout_form.address.$invalid">
+                                    We need your address to deliver.</small>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <div class="pull-left">
+                            <a href="/" class="btn btn-default">
+                                <i class="fa fa-chevron-left"></i>Back</a>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary" ng-click="placeOrder();" ng-disabled="checkout_form.$invalid" tabindex="6">Make Payment
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+
+        </div>
+    </div>
+    <!-- /.col-md-9 -->

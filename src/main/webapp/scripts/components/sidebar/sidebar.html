@@ -1,0 +1,27 @@
+<div class="col-md-2 text text-center" ng-controller="SidebarController" class="sidebar">
+
+    <table class="table table-bordered">
+        <tr>
+
+            <th class="text text-center">
+                Category</th>
+
+        </tr>
+        <td><a ui-sref="home">All</a></td>
+        <tr ng-repeat="c in category" ng-class="{active:isActive(c.slug)}">
+
+            <td>
+                <a ui-sref="dishCatalog({slug: c.slug})">{{c.name}}</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<!-- <style>
+    .active {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+    }
+
+</style> -->

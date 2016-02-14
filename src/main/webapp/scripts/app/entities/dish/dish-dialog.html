@@ -1,0 +1,80 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myDishLabel">Create or edit a Dish</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name" ng-model="dish.name" required/>
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block" ng-show="editForm.name.$error.required">
+                    This field is required.
+                </p>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="field_category">Category</label>
+                <!-- <input type="text" class="form-control" name="category" id="field_description" ng-model="dish.category.name" required/> -->
+                <select ng-model="dish.category" ng-options="c.name for c in cat" class="form-control" name="category" id="field_category"></select>
+                <div ng-show="editForm.name.$invalid">
+                    <p class="help-block" ng-show="editForm.name.$error.required">
+                        This field is required.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price" ng-model="dish.price" required/>
+            <div ng-show="editForm.price.$invalid">
+                <p class="help-block" ng-show="editForm.price.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block" ng-show="editForm.price.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_stock">Stock</label>
+            <input type="number" class="form-control" name="stock" id="field_stock" ng-model="dish.stock" min="0"/>
+            <div ng-show="editForm.stock.$invalid">
+                <p class="help-block" ng-show="editForm.stock.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block" ng-show="editForm.stock.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description" ng-model="dish.description"/>
+        </div>
+
+        <div class="form-group" ngf-select ngf-drop class="drop-box" ng-model="dish.picture" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-pattern="'image/*'" ngf-max-size="15MB" accept="image/*">Drop product image here or click to upload button</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+        <button accept="image/*" type="file" class="btn btn-primary" ngf-select ngf-max-size="15MB" ng-model="dish.picture">Upload picture</button>
+
+        <h4 ng-show="dish.picture">Preview</h4>
+        <img ngf-src="dish.picture" width="100px">
+        <div ng-show="dish.picture">{{dish.picture.name}}</div>
+        <img src="{{dish.imageUrl}}" alt="{{dish.name}}" class="img-responsive">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;
+            <span>Save</span>
+        </button>
+    </div>
+</form>

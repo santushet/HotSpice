@@ -1,0 +1,52 @@
+<div class="col-md-12">
+    <div class="box">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Orders History</h1>
+
+                <div class="panel panel-primary" ng-repeat="order in orders  | orderBy : 'orderDate' : 'reverse'">
+
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <button class="btn btn-warning">{{$index+1}}</button>&nbsp;{{order.orderDate}}
+                            <div class="col-sm-3 pull-right">
+                                <select ng-model="order.status" ng-options="str for str in orderStatusLov" ng-change="changeStatus(order)" has-any-authority="ROLE_OPERATOR,ROLE_ADMIN" class="form-control"></select>
+                                <div has-authority="ROLE_USER">{{order.status}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tbody>
+                                <tr ng-repeat="item in order.items">
+                                    <td><img ng-src="{{item.dish.imageUrl}}" width="100px"/>
+                                    </td>
+                                    <td>{{item.dish.name}}<br/>
+                                        <span class="text-muted">
+                                            {{item.dish.price | currency:'&#8377;'}}
+                                            *
+                                            {{item.quantity}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">=
+                                            {{item.quantity * item.dish.price | currency:'&#8377;'}}</span>
+                                    </td>
+
+                                </tr>
+                                <tr class="well">
+                                    <td colspan="1"></td>
+
+                                    <td class="text-right">Order Total:</td>
+
+                                    <td colspan="1">{{order.total | currency:'&#8377;'}}</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

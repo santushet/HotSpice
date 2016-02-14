@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "HotSpice",
+    "packageName": "com.spice.hot",
+    "packageFolder": "com/spice/hot",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "65a8a001040096dbdbd2118bd4a2336b73e5418d",
+    "testFrameworks": [
+      "protractor"
+    ]
+  }
+}

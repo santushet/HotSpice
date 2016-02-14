@@ -1,0 +1,63 @@
+<div>
+    <h2>Dishs</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="dish.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Dish</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Name</span></th>
+                      <th><span>Category</span></th>
+                    <th><span>Price</span></th>
+                    <th><span>Stock</span></th>
+                    <th><span>Description</span></th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dish in dishs track by dish.id">
+                  <div class="thumbnail dishbox">
+                    <td><a ui-sref="dish.detail({id:dish.id})">
+                      <img ngf-src="dish.picture">
+                      <div ng-show="dish.picture">{{dish.picture.name}}</div>
+                      <img src="{{dish.imageUrl}}" alt="{{dish.name}}" class="img-responsive">
+                    </a></td>
+                    <td>{{dish.name}}</td>
+                    <td>{{dish.category.name}}</td>
+                    <td>{{dish.price}}</td>
+                    <td>{{dish.stock}}</td>
+                    <td>{{dish.description}}</td>
+                  </div>
+                    <td>
+                        <button type="submit"
+                                ui-sref="dish.detail({id:dish.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="dish.edit({id:dish.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="dish.delete({id:dish.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "slug",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "info",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "pagination": "pager"
+}
