@@ -16,7 +16,7 @@
     "frontendBuilder": "grunt",
     "enableTranslation": false,
     "enableSocialSignIn": false,
-    "rememberMeKey": "65a8a001040096dbdbd2118bd4a2336b73e5418d",
+//    "rememberMeKey": "65a8a001040096dbdbd2118bd4a2336b73e5418d",
     "testFrameworks": [
       "protractor"
     ]

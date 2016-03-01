@@ -16,8 +16,14 @@ angular.module('hotSpiceApp')
                         controller: 'DishController'
                     }
                 },
-                resolve: {
-                }
+                resolve: {}
+              //   },
+              //   onEnter: function(Tracker) {
+              //     Tracker.subscribe();
+              // },
+              // onExit: function(Tracker) {
+              //     Tracker.unsubscribe();
+              // },
             })
             .state('dish.detail', {
                 parent: 'entity',

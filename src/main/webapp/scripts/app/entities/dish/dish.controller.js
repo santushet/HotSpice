@@ -2,34 +2,51 @@
 
 var uploadHander;
 angular.module('hotSpiceApp')
-    .controller('DishController', function($scope, $state, Dish) {
+    .controller('DishController', function($scope, $state, Dish,Websocket) {
 
-        $scope.dishs = [];
-        $scope.loadAll = function() {
-            Dish.query(function(result) {
-                $scope.dishs = result;
-            });
-        };
-        $scope.loadAll();
+      $scope.dishs = [];
+      $scope.loadAll = function() {
+          Dish.query(function(result) {
+              $scope.dishs = result;
+          });
+      };
+      $scope.loadAll();
+      // Websocket.receive().then(null, null, function(dish) {
+      //     showActivity(dish);
+      // });
+
+      // function showActivity(dish) {
+      //     var index=$scope.dishs.indexOf(dish);
+      //     console.log(index);
+      //     if(index==-1){
+      //       $scope.dishs.push(dish);
+      //     }
+      //     else{
+      //       $scope.dishs.splice(index,1);
+      //     }
+      //     $scope.loadAll();
+      // };
+
+      $scope.refresh = function() {
+          $scope.loadAll();
+          $scope.clear();
+      };
+
+      $scope.clear = function() {
+
+          $scope.dish = {
+              name: null,
+              price: null,
+              stock: null,
+              description: null,
+              // id: null
+          };
+      };
 
 
-        $scope.refresh = function() {
-            $scope.loadAll();
-            $scope.clear();
-        };
-
-        $scope.clear = function() {
-            $scope.dish = {
-                name: null,
-                price: null,
-                stock: null,
-                description: null,
-                // id: null
-            };
-        };
     })
     .controller('DishDialogController',
-        function($scope, $stateParams, $uibModalInstance, entity, Category, Dish,Upload, $timeout) {
+        function($scope, $stateParams, $uibModalInstance, entity, Category, Dish,Upload, $timeout,Websocket) {
 
             $scope.dish = entity;
             $scope.cat = Category.query();
@@ -38,13 +55,17 @@ angular.module('hotSpiceApp')
                     id: id
                 }, function(result) {
                     $scope.dish = result;
+                    // console.log($scope.dish);
                 });
             };
 
             var onSaveSuccess = function(result) {
                 $scope.$emit('hotSpiceApp:dishUpdate', result);
+                // Tracker.sendActivity(result);
+                Websocket.send(result);
                 $uibModalInstance.close(result);
                 $scope.isSaving = false;
+
             };
 
             var onSaveError = function(result) {
@@ -67,6 +88,10 @@ angular.module('hotSpiceApp')
               }
             };
 
+
+
+
+
             $scope.clear = function() {
                 $uibModalInstance.dismiss('cancel');
             };
@@ -87,13 +112,18 @@ angular.module('hotSpiceApp')
         $scope.$on('$destroy', unsubscribe);
 
     })
-    .controller('DishDeleteController', function($scope, $uibModalInstance, entity, Dish) {
+    .controller('DishDeleteController', function($scope, $uibModalInstance, entity, Dish,Websocket) {
 
         $scope.dish = entity;
         $scope.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
         $scope.confirmDelete = function(id) {
+          Dish.get({
+              id: id
+          }, function(result) {
+            Websocket.send(result);
+          });
             Dish.delete({
                     id: id
                 },

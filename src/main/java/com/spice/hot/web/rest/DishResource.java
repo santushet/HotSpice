@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,17 +46,20 @@ public class DishResource {
     @RequestMapping(value = "/dishs",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
+    @MessageMapping("/newDish")
+    @SendTo("/topic/newDish")
     @Timed
-    public ResponseEntity<Dish> createDish(@Valid @RequestBody Dish dish) throws URISyntaxException {
+    public Dish createDish(@Valid @RequestBody Dish dish) throws URISyntaxException {
         log.debug("REST request to save Dish : {}", dish);
         //log.debug("test picture"+file.getOriginalFilename());
-        if (dish.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("dish", "idexists", "A new dish cannot already have an ID")).body(null);
-        }
+//        if (dish.getId() != null) {
+//            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("dish", "idexists", "A new dish cannot already have an ID")).body(null);
+//        }
         Dish result = dishService.save(dish);
-        return ResponseEntity.created(new URI("/api/dishs/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("dish", result.getName().toString()))
-            .body(result);
+//        return ResponseEntity.created(new URI("/api/dishs/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert("dish", result.getName().toString()))
+//            .body(result);
+        return result;
     }
 
     /**
@@ -64,15 +69,13 @@ public class DishResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Dish> updateDish(@Valid @RequestBody Dish dish) throws URISyntaxException {
+    public Dish updateDish(@Valid @RequestBody Dish dish) throws URISyntaxException {
         log.debug("REST request to update Dish : {}", dish);
         if (dish.getId() == null) {
             return createDish(dish);
         }
         Dish result = dishService.save(dish);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("dish", dish.getName().toString()))
-            .body(result);
+        return result;
     }
 
     /**

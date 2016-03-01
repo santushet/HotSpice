@@ -1,54 +1,25 @@
 'use strict';
 
 angular.module('hotSpiceApp')
-    .factory('Tracker', function ($rootScope, $cookies, $http, $q) {
+    .factory('Tracker', function ($rootScope) {
         var stompClient = null;
-        var subscriber = null;
-        var listener = $q.defer();
-        var connected = $q.defer();
-        var alreadyConnectedOnce = false;
         function sendActivity() {
-            if (stompClient != null && stompClient.connected) {
-                stompClient
-                    .send('/topic/activity',
-                    {},
-                    JSON.stringify({'page': $rootScope.toState.name}));
-            }
+            stompClient
+                .send('/websocket/activity',
+                {},
+                JSON.stringify({'page': $rootScope.toState.name}));
+
         }
         return {
             connect: function () {
-                //building absolute path so that websocket doesnt fail when deploying with a context path
-                var loc = window.location;
-                var url = '//' + loc.host + loc.pathname + 'websocket/tracker';
-                var socket = new SockJS(url);
+                var socket = new SockJS('/websocket/activity');
                 stompClient = Stomp.over(socket);
-                var headers = {};
-                headers['X-CSRF-TOKEN'] = $cookies[$http.defaults.xsrfCookieName];
-                stompClient.connect(headers, function(frame) {
-                    connected.resolve("success");
+                stompClient.connect({}, function(frame) {
                     sendActivity();
-                    if (!alreadyConnectedOnce) {
-                        $rootScope.$on('$stateChangeStart', function (event) {
-                            sendActivity();
-                        });
-                        alreadyConnectedOnce = true;
-                    }
-                });
-            },
-            subscribe: function() {
-                connected.promise.then(function() {
-                    subscriber = stompClient.subscribe("/topic/tracker", function(data) {
-                        listener.notify(JSON.parse(data.body));
+                    $rootScope.$on('$stateChangeStart', function (event) {
+                        sendActivity();
                     });
-                }, null, null);
-            },
-            unsubscribe: function() {
-                if (subscriber != null) {
-                    subscriber.unsubscribe();
-                }
-            },
-            receive: function() {
-                return listener.promise;
+                });
             },
             sendActivity: function () {
                 if (stompClient != null) {
@@ -58,7 +29,7 @@ angular.module('hotSpiceApp')
             disconnect: function() {
                 if (stompClient != null) {
                     stompClient.disconnect();
-                    stompClient = null;
+                    stompClient == null;
                 }
             }
         };

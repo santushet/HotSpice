@@ -10,7 +10,7 @@ angular.module('hotSpiceApp')
                 AuthServerProvider.login(credentials).then(function (data) {
                     // retrieve the logged account information
                     Principal.identity(true).then(function(account) {
-                        Tracker.sendActivity();
+                        // Tracker.sendActivity();
                         deferred.resolve(data);
                     });
                     return cb();

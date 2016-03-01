@@ -2,7 +2,7 @@
 
 angular.module('hotSpiceApp')
     .factory('Dish', function($resource, DateUtils,Upload, $q) {
-        var resource = $resource('api/dishs/:id/:controller', {}, {
+          var resource = $resource('api/dishs/:id/:controller', {}, {
             'query': {
                 method: 'GET',
                 isArray: true
@@ -55,5 +55,50 @@ angular.module('hotSpiceApp')
             }
             return d.promise;
         };
+
+        // var stompClient = null;
+        // var listener = $q.defer();
+        //
+        //         resource.connect=function() {
+        //           var socket = new SockJS('/websocket/dish');
+        //           stompClient = Stomp.over(socket);
+        //           stompClient.connect({}, function(frame) {
+        //
+        //               console.log('Connected: ' + frame);
+        //               stompClient.subscribe('/topic/dish', function(greeting){
+        //
+        //               });
+        //           });
+        //       }
+        //
+        //       subscribe: function() {
+        //               connected.promise.then(function() {
+        //                   subscriber = stompClient.subscribe("/topic/tracker", function(data) {
+        //                       listener.notify(JSON.parse(data.body));
+        //                   });
+        //               }, null, null);
+        //           },
+        //           unsubscribe: function() {
+        //               if (subscriber != null) {
+        //                   subscriber.unsubscribe();
+        //               }
+        //           },
+        //
+        //       resource.disconnect=function() {
+        //           if (stompClient != null) {
+        //               stompClient.disconnect();
+        //           }
+        //         console.log("Disconnected");
+        //       }
+        //
+        //       resource.send=function(result) {
+        //           // var name = document.getElementById('name').value;
+        //
+        //           stompClient.send("/api/newDish", {}, JSON.stringify(result));
+        //       }
+        //
+        //       resource.receive= function() {
+        //          return listener.promise;
+        //      }
         return resource;
     });
